@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: postgres:11.1-alpine
+    container_name: hastecloud_postgresql
+    environment:
+      POSTGRES_DB: hastecloud
+      POSTGRES_USER: hastecloud
+      POSTGRES_PASSWORD: hastecloud
+    ports:
+      - 5432:5432
+    volumes:
+      - "practice_platform_db:/var/lib/postgresql/data"
+
+
+volumes:
+  practice_platform_db:
