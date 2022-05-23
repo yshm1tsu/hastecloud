@@ -1,3 +1,3 @@
 package ru.itis.hastecloud.dtos
 
-data class LoginDto(var login: String)
+data class LoginDto(var token: String)
