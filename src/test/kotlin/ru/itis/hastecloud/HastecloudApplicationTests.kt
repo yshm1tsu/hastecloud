@@ -1,4 +1,4 @@
-package ru.itis.hastecloud.hastecloud
+package ru.itis.hastecloud
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

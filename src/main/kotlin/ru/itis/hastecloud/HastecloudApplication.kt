@@ -1,4 +1,4 @@
-package ru.itis.hastecloud.hastecloud
+package ru.itis.hastecloud
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
