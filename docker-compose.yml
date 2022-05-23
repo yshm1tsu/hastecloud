@@ -10,8 +10,8 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - "practice_platform_db:/var/lib/postgresql/data"
+      - "hastecloud_db:/var/lib/postgresql/data"
 
 
 volumes:
-  practice_platform_db:
+  hastecloud_db:
