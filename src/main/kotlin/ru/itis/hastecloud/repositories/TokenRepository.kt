@@ -6,7 +6,6 @@ import ru.itis.hastecloud.models.Token
 import ru.itis.hastecloud.models.User
 import java.time.LocalDateTime
 
-@Repository
 interface TokenRepository : JpaRepository<Token, Long> {
     fun findAllByUser(user: User): List<Token>
     fun findAllByUserId(id: Long): Token?

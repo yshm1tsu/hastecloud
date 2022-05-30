@@ -8,7 +8,7 @@ class Role(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null,
     @Enumerated(EnumType.STRING)
     var permissionLevel: Permission = Permission.USER,
-    var dueTo: LocalDateTime
+    var dueTo: LocalDateTime? = null,
 )
 
 enum class Permission {
