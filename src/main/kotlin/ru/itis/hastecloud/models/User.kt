@@ -14,6 +14,6 @@ class User(
     var birthDate: LocalDateTime,
     var description: String,
     @OneToMany
-    var roles: Set<Role> = setOf(Role()),
+    var roles: Set<Role>,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
 )

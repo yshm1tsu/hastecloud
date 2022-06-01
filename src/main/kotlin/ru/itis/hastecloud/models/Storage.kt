@@ -1,4 +1,14 @@
 package ru.itis.hastecloud.models
 
-class Storage {
-}
+import javax.persistence.*
+
+@Entity
+class Storage(
+    var size: Long,
+    var maxSize: Long,
+    @OneToMany
+    var userFiles: List<UserFile>,
+    @OneToOne
+    var user: User,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
+)

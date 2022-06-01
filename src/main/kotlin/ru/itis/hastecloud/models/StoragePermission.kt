@@ -1,4 +1,10 @@
 package ru.itis.hastecloud.models
 
-class StoragePermission {
-}
+import javax.persistence.*
+
+@Entity
+class StoragePermission(
+    var cost: Long,
+    var maxSize: Long,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
+)

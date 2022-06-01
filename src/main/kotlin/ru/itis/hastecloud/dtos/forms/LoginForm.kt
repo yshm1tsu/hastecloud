@@ -1,3 +1,3 @@
 package ru.itis.hastecloud.dtos.forms
 
-data class LoginForm(var login: String, var password: String)
+data class LoginForm(var email: String, var password: String)
