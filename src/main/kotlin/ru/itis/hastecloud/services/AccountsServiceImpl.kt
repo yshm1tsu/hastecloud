@@ -42,7 +42,12 @@ class AccountsServiceImpl(
     }
 
     override fun signIn(loginForm: LoginForm): LoginDto {
-        TODO("Not yet implemented")
+        val user = usersRepository.findByEmail(loginForm.email) ?: throw NotFoundException()
+        if (user.hashPassword != passwordEncoder.encode(loginForm.password)){
+            throw NotFoundException()
+        }
+        val token = Token(token = UUID.randomUUID().toString(), user = user)
+        return LoginDto(tokenRepository.save(token).token)
     }
 
     private fun getDefaultDateTime(): LocalDateTime {

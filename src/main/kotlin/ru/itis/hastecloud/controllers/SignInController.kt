@@ -12,7 +12,5 @@ import ru.itis.hastecloud.services.AccountsService
 class SignInController(val accountsService: AccountsService) {
 
     @PostMapping("/login")
-    fun login(form: LoginForm): ResponseEntity<LoginDto>? {
-        return null
-    }
+    fun login(form: LoginForm): ResponseEntity<LoginDto>? = ResponseEntity.ok(accountsService.signIn(form))
 }
