@@ -3,6 +3,7 @@ package ru.itis.hastecloud.listeners
 import org.springframework.stereotype.Component
 import ru.itis.hastecloud.models.Role
 import ru.itis.hastecloud.models.StoragePermission
+import ru.itis.hastecloud.models.User
 import ru.itis.hastecloud.repositories.RoleRepository
 import ru.itis.hastecloud.repositories.StoragePermissionRepository
 
@@ -29,7 +30,7 @@ class DatabaseDataInitializerOnAppStartupListener(
         )
         storagePermissionRepository.saveAll(storagePermissions)
         val roles = listOf(
-            Role(storagePermissions.first())
+            Role(storagePermissions.first(), users = setOf())
         )
         roleRepository.saveAll(roles)
     }
