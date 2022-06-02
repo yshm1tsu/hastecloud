@@ -57,7 +57,7 @@ class AccountsServiceImpl(
 
     override fun signIn(loginForm: LoginForm): LoginDto {
         val user = usersRepository.findByEmail(loginForm.email) ?: throw NotFoundException()
-        if (user.hashPassword != passwordEncoder.encode(loginForm.password)){
+        if (!passwordEncoder.matches(loginForm.password, user.hashPassword)){
             throw NotFoundException()
         }
         val token = Token(token = UUID.randomUUID().toString(), user = user)
