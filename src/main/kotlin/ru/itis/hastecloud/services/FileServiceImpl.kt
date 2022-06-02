@@ -37,7 +37,7 @@ class FileServiceImpl(
         val userFile = fileRepository.findById(id).orElseThrow { NotFoundException() }
         return DownloadFileDto(
             resource = ByteArrayResource(userFile.content!!),
-            contentType = userFile.type.type
+            contentType = "${userFile.type.type}/${userFile.type.subtype}"
         )
     }
 
