@@ -12,7 +12,7 @@ import ru.itis.hastecloud.dtos.forms.AddCommentaryForm
 import ru.itis.hastecloud.services.FileCommentaryServiceImpl
 
 
-@RestController("/api/v1/")
+@RestController("/api/v1/commentary")
 class FileCommentaryController(val fileCommentaryService: FileCommentaryServiceImpl) {
 
     @PostMapping("/add-commentary")
