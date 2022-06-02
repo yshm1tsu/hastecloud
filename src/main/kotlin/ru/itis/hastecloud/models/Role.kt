@@ -9,6 +9,8 @@ class Role(
     var storagePermission: StoragePermission,
     @Enumerated(EnumType.STRING)
     var permissionLevel: Permission = Permission.USER,
+    @ManyToMany
+    var users: Set<User>,
     var dueTo: LocalDateTime? = null,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
 )

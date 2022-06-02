@@ -13,7 +13,7 @@ class User(
     var hashPassword: String,
     var birthDate: LocalDateTime,
     var description: String?,
-    @OneToMany
+    @ManyToMany
     var roles: Set<Role>,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
 )
