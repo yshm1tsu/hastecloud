@@ -9,13 +9,13 @@ import ru.itis.hastecloud.dtos.SignUpDto
 import ru.itis.hastecloud.dtos.forms.SignUpForm
 import ru.itis.hastecloud.services.AccountsService
 
-@RestController("/api/v1/sign-up")
+@RestController
 class SignUpController {
 
     @Autowired
     private lateinit var accountsService: AccountsService
 
-    @PostMapping
+    @PostMapping("/api/v1/signup")
     fun signUp(signUpForm: SignUpForm): ResponseEntity<SignUpDto> = ResponseEntity.ok(accountsService.signUp(signUpForm))
 
 }

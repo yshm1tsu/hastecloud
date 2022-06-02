@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://hastecloud:5432/hastecloud
+    url: jdbc:postgresql://localhost:5432/hastecloud
     username: hastecloud
     password: hastecloud
     driverClassName: org.postgresql.Driver

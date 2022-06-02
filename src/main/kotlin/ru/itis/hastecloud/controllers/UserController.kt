@@ -10,7 +10,7 @@ class UserController(
     private val usersRepository: UsersRepository
 ) {
 
-    @GetMapping
+    @GetMapping("/all")
     fun users(): List<User> = usersRepository.findAll()
 
 }

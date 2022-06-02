@@ -15,7 +15,7 @@ class DatabaseDataInitializerOnAppStartupListener(
     val GB: Long = 1073741824
 
     fun initData() {
-        if (storagePermissionRepository.findAll().isEmpty())
+        if (storagePermissionRepository.count() >= 2)
             return
         val storagePermissions = listOf(
             StoragePermission(
