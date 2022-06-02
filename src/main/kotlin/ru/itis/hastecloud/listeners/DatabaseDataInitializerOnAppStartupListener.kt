@@ -5,7 +5,6 @@ import ru.itis.hastecloud.models.Role
 import ru.itis.hastecloud.models.StoragePermission
 import ru.itis.hastecloud.repositories.RoleRepository
 import ru.itis.hastecloud.repositories.StoragePermissionRepository
-import javax.annotation.PostConstruct
 
 @Component
 class DatabaseDataInitializerOnAppStartupListener(
@@ -15,8 +14,9 @@ class DatabaseDataInitializerOnAppStartupListener(
 
     val GB: Long = 1073741824
 
-    @PostConstruct
-    private fun initData() {
+    fun initData() {
+        if (storagePermissionRepository.findAll().isEmpty())
+            return
         val storagePermissions = listOf(
             StoragePermission(
                 cost = 100,
