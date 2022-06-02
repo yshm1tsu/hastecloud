@@ -1,3 +1,8 @@
 package ru.itis.hastecloud.dtos.forms
 
-data class UploadFileForm(var file: String)
+import org.springframework.web.multipart.MultipartFile
+
+data class UploadFileForm(
+    var file: MultipartFile,
+    var userId: Long
+)

@@ -1,11 +1,10 @@
 spring:
   datasource:
-    url: jdbc:h2:file:./test;DB_CLOSE_ON_EXIT=FALSE;IFEXISTS=TRUE
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
+    url: jdbc:postgresql://hastecloud:5432/hastecloud
+    username: hastecloud
+    password: hastecloud
+    driverClassName: org.postgresql.Driver
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     show-sql: true

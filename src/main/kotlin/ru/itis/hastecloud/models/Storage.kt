@@ -7,7 +7,7 @@ class Storage(
     var size: Long,
     var maxSize: Long,
     @OneToMany
-    var userFiles: List<UserFile>,
+    var userFiles: List<UserFile> = listOf(),
     @OneToOne
     var user: User,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null

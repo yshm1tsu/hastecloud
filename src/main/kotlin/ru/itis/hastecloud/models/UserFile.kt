@@ -14,7 +14,7 @@ class UserFile(
     @Enumerated(EnumType.STRING)
     var permissionLevel: FilePermission = FilePermission.OPEN,
     @OneToMany
-    var commentaries: List<FileCommentary>,
+    var commentaries: List<FileCommentary> = listOf(),
     @ManyToOne
     var storage: Storage,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null

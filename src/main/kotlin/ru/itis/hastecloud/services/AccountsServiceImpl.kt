@@ -7,10 +7,9 @@ import ru.itis.hastecloud.dtos.SignUpDto
 import ru.itis.hastecloud.dtos.forms.LoginForm
 import ru.itis.hastecloud.dtos.forms.SignUpForm
 import ru.itis.hastecloud.exceptions.NotFoundException
-import ru.itis.hastecloud.models.Permission
-import ru.itis.hastecloud.models.Token
-import ru.itis.hastecloud.models.User
+import ru.itis.hastecloud.models.*
 import ru.itis.hastecloud.repositories.RoleRepository
+import ru.itis.hastecloud.repositories.StorageRepository
 import ru.itis.hastecloud.repositories.TokenRepository
 import ru.itis.hastecloud.repositories.UsersRepository
 import java.time.LocalDateTime
@@ -21,25 +20,40 @@ class AccountsServiceImpl(
     private val passwordEncoder: BCryptPasswordEncoder,
     private val usersRepository: UsersRepository,
     private val tokenRepository: TokenRepository,
-    private val roleRepository: RoleRepository
+    private val roleRepository: RoleRepository,
+    private val storageRepository: StorageRepository
 ) : AccountsService {
 
     override fun signUp(signUpForm: SignUpForm): SignUpDto {
         if (usersRepository.findByEmail(signUpForm.email) == null)
             throw NotFoundException()
-        val user = User(
-            signUpForm.firstname,
-            signUpForm.lastname,
-            signUpForm.username,
-            signUpForm.email,
-            passwordEncoder.encode(signUpForm.password),
-            getDefaultDateTime(),
-            signUpForm.description,
-            setOf(roleRepository.findByPermissionLevel(Permission.USER))
-        )
+        val user = getUser(signUpForm)
         usersRepository.save(user)
+        val storagePermission = user.roles.first().storagePermission
+        val storage = getStorage(storagePermission, user)
+        storageRepository.save(storage)
         return SignUpDto()
     }
+
+    private fun getStorage(
+        storagePermission: StoragePermission,
+        user: User
+    ) = Storage(
+        size = 0,
+        maxSize = storagePermission.maxSize,
+        user = user
+    )
+
+    private fun getUser(signUpForm: SignUpForm) = User(
+        signUpForm.firstname,
+        signUpForm.lastname,
+        signUpForm.username,
+        signUpForm.email,
+        passwordEncoder.encode(signUpForm.password),
+        getDefaultDateTime(),
+        signUpForm.description,
+        setOf(roleRepository.findByPermissionLevel(Permission.USER))
+    )
 
     override fun signIn(loginForm: LoginForm): LoginDto {
         val user = usersRepository.findByEmail(loginForm.email) ?: throw NotFoundException()
