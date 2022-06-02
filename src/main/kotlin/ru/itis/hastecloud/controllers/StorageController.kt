@@ -7,15 +7,15 @@ import ru.itis.hastecloud.services.StorageService
 import org.springframework.http.ResponseEntity
 
 
-@RestController("/api/v1/storage")
+@RestController
 class StorageController(private val storageService: StorageService) {
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/v1/storage/{id}")
     fun retrieveStorageById(@PathVariable id: Long): ResponseEntity<Any>? {
         return ResponseEntity.ok(storageService.retrieveStorageById(id))
     }
 
-    @GetMapping("/by-user/{id}")
+    @GetMapping("/api/v1/storage/by-user/{id}")
     fun retrieveStorageByUserId(@PathVariable id: Long): ResponseEntity<Any>? {
         return ResponseEntity.ok(storageService.retrieveStorageByUserId(id))
     }

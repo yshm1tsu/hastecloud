@@ -1,5 +1,6 @@
 package ru.itis.hastecloud.models
 
+import org.hibernate.annotations.Type
 import org.springframework.util.MimeType
 import org.springframework.util.MimeTypeUtils
 import javax.persistence.*
@@ -7,6 +8,7 @@ import javax.persistence.*
 @Entity
 class UserFile(
     @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     var content: ByteArray?,
     var size: Long?,
     var type: MimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM,

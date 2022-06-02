@@ -25,7 +25,7 @@ class AccountsServiceImpl(
 ) : AccountsService {
 
     override fun signUp(signUpForm: SignUpForm): SignUpDto {
-        if (usersRepository.findByEmail(signUpForm.email) == null)
+        if (usersRepository.findByEmail(signUpForm.email) != null)
             throw NotFoundException()
         val user = getUser(signUpForm)
         usersRepository.save(user)

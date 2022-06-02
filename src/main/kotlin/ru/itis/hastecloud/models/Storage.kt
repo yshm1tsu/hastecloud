@@ -6,7 +6,7 @@ import javax.persistence.*
 class Storage(
     var size: Long,
     var maxSize: Long,
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     var userFiles: List<UserFile> = listOf(),
     @OneToOne
     var user: User,

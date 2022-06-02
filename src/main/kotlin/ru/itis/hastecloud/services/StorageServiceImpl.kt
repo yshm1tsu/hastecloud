@@ -17,7 +17,7 @@ class StorageServiceImpl(
             storage.user,
             storage.size,
             storage.maxSize,
-            storage.userFiles
+            storage
         )
     }
 
@@ -27,7 +27,7 @@ class StorageServiceImpl(
             storage.user,
             storage.size,
             storage.maxSize,
-            storage.userFiles
+            storage
         )
     }
 }
