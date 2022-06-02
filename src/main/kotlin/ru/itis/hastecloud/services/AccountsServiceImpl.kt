@@ -32,7 +32,7 @@ class AccountsServiceImpl(
         val storagePermission = user.roles.first().storagePermission
         val storage = getStorage(storagePermission, user)
         storageRepository.save(storage)
-        return SignUpDto()
+        return SignUpDto("ok")
     }
 
     private fun getStorage(

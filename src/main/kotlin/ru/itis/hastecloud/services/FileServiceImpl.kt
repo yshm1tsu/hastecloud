@@ -20,13 +20,13 @@ class FileServiceImpl(
 ) : FileService {
     override fun uploadFile(uploadFileForm: UploadFileForm) {
         val multipartFile = uploadFileForm.file
-        val user = usersRepository.findById(uploadFileForm.userId).orElseThrow { NotFoundException() }
+        val user = usersRepository.findById(uploadFileForm.userId!!).orElseThrow { NotFoundException() }
 
         val userFile = UserFile(
-            content = multipartFile.bytes,
-            type = MimeType.valueOf(multipartFile.contentType ?: MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE),
-            filename = "${user.username}-${multipartFile.name}",
-            size = multipartFile.size,
+            content = multipartFile?.bytes,
+            type = MimeType.valueOf(multipartFile?.contentType ?: MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE),
+            filename = "${user.username}-${multipartFile?.name}",
+            size = multipartFile?.size,
             storage = storageRepository.findByUser(user)
         )
 
@@ -36,7 +36,7 @@ class FileServiceImpl(
     override fun downloadFile(id: Long): DownloadFileDto {
         val userFile = fileRepository.findById(id).orElseThrow { NotFoundException() }
         return DownloadFileDto(
-            resource = ByteArrayResource(userFile.content),
+            resource = ByteArrayResource(userFile.content!!),
             contentType = userFile.type.type
         )
     }

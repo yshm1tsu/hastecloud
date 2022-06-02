@@ -7,8 +7,8 @@ import javax.persistence.*
 @Entity
 class UserFile(
     @Lob
-    var content: ByteArray,
-    var size: Long,
+    var content: ByteArray?,
+    var size: Long?,
     var type: MimeType = MimeTypeUtils.APPLICATION_OCTET_STREAM,
     var filename: String,
     @Enumerated(EnumType.STRING)

@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 class FileCommentary(
-    var text: String,
+    var text: String?,
     var publicashionDate: LocalDateTime = LocalDateTime.now(),
     @ManyToOne
     var file: UserFile,

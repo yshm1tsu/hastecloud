@@ -20,13 +20,13 @@ class FileCommentaryServiceImpl(
 ) : FileCommentaryService {
 
     override fun addCommentary(addCommentaryForm: AddCommentaryForm): AddCommentaryDto {
-        val user = usersRepository.findById(addCommentaryForm.userId).orElseThrow { NotFoundException() }
-        val file = fileRepository.findById(addCommentaryForm.fileId).orElseThrow { NotFoundException() }
+        val user = usersRepository.findById(addCommentaryForm.userId!!).orElseThrow { NotFoundException() }
+        val file = fileRepository.findById(addCommentaryForm.fileId!!).orElseThrow { NotFoundException() }
         val fileCommentary = FileCommentary(
             user = user, text = addCommentaryForm.text, publicashionDate = LocalDateTime.now(), file = file
         )
         fileCommentaryRepository.save(fileCommentary)
-        return AddCommentaryDto()
+        return AddCommentaryDto("ok")
     }
 
     override fun retrieveCommentaryByFileId(id: Long): RetrieveCommentaryByFileDto =

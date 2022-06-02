@@ -12,5 +12,19 @@ services:
     volumes:
       - "hastecloud_db:/var/lib/postgresql/data"
 
-volumes:
-  hastecloud_db:
+  hastecloud:
+    image: hastecloud-app
+    container_name: hastecloud
+    ports:
+      - 9090:9090
+    depends_on:
+      - db
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://hastecloud:5432/hastecloud"
+      - "SPRING_DATASOURCE_USERNAME=hastecloud"
+      - "SPRING_DATASOURCE_PASSWORD=hastecloud"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
