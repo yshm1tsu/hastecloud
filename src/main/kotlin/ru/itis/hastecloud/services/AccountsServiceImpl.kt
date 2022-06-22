@@ -3,7 +3,7 @@ package ru.itis.hastecloud.services
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import ru.itis.hastecloud.dtos.LoginDto
-import ru.itis.hastecloud.dtos.SignUpDto
+import ru.itis.hastecloud.dtos.UserDto
 import ru.itis.hastecloud.dtos.forms.LoginForm
 import ru.itis.hastecloud.dtos.forms.SignUpForm
 import ru.itis.hastecloud.exceptions.NotFoundException
@@ -24,7 +24,7 @@ class AccountsServiceImpl(
     private val storageRepository: StorageRepository
 ) : AccountsService {
 
-    override fun signUp(signUpForm: SignUpForm): SignUpDto {
+    override fun signUp(signUpForm: SignUpForm) {
         if (usersRepository.findByEmail(signUpForm.email) != null)
             throw NotFoundException()
         val user = getUser(signUpForm)
@@ -32,7 +32,6 @@ class AccountsServiceImpl(
         val storagePermission = user.roles.first().storagePermission
         val storage = getStorage(storagePermission, user)
         storageRepository.save(storage)
-        return SignUpDto("ok")
     }
 
     private fun getStorage(
@@ -67,4 +66,6 @@ class AccountsServiceImpl(
     private fun getDefaultDateTime(): LocalDateTime {
         return LocalDateTime.of(2020, 6, 1, 0, 0, 0)
     }
+
+    override fun getAllUsers(): List<UserDto> = UserDto.from(usersRepository.findAll())
 }

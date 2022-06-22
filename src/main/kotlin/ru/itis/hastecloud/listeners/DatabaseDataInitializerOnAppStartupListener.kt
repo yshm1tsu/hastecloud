@@ -1,5 +1,7 @@
 package ru.itis.hastecloud.listeners
 
+import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component
 import ru.itis.hastecloud.models.Role
 import ru.itis.hastecloud.models.StoragePermission
@@ -11,7 +13,7 @@ import ru.itis.hastecloud.repositories.StoragePermissionRepository
 class DatabaseDataInitializerOnAppStartupListener(
     private val roleRepository: RoleRepository,
     private val storagePermissionRepository: StoragePermissionRepository
-) {
+):ApplicationListener<ApplicationReadyEvent>{
 
     val GB: Long = 1073741824
 
@@ -34,4 +36,6 @@ class DatabaseDataInitializerOnAppStartupListener(
         )
         roleRepository.saveAll(roles)
     }
+
+    override fun onApplicationEvent(event: ApplicationReadyEvent) = initData()
 }

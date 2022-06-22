@@ -1,9 +1,13 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/hastecloud
-    username: hastecloud
-    password: hastecloud
+    username: postgres
+    password: postgres
     driverClassName: org.postgresql.Driver
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1100MB
   jpa:
     hibernate:
       ddl-auto: update
@@ -11,3 +15,6 @@ spring:
   sql:
     init:
       mode: always
+springdoc:
+  swagger-ui:
+    path: /swagger.html

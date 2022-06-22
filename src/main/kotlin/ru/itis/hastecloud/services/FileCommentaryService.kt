@@ -1,11 +1,10 @@
 package ru.itis.hastecloud.services
+import ru.itis.hastecloud.dtos.FileCommentaryDto
 import ru.itis.hastecloud.dtos.forms.AddCommentaryForm
-import ru.itis.hastecloud.dtos.AddCommentaryDto
-import ru.itis.hastecloud.dtos.RetrieveCommentaryByFileDto
-import ru.itis.hastecloud.dtos.RetrieveCommentaryByIdDto
+
 interface FileCommentaryService {
-    fun addCommentary(addCommentaryForm: AddCommentaryForm): AddCommentaryDto
-    fun retrieveCommentaryByFileId(id: Long): RetrieveCommentaryByFileDto
-    fun retrieveCommentaryById(id: Long): RetrieveCommentaryByIdDto
+    fun addCommentary(addCommentaryForm: AddCommentaryForm)
+    fun retrieveCommentariesByFileId(id: Long): List<FileCommentaryDto>
+    fun retrieveCommentaryById(id: Long): FileCommentaryDto
 
 }
